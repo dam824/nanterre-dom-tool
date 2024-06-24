@@ -1,16 +1,43 @@
 'use client';
 
+import React from 'react';
 import { useState } from "react";
 import Image from 'next/image';
 import Link from "next/link";
+ 
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+ 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //logic soumission formulaire a voir plus tard
+
+    if (password !== confirmPassword) {
+      setError("Les mots de passe ne correspondent pas");
+      return;
+    }
+
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password, confirmPassword }),
+    });
+
+    if (response.ok) {
+      setSuccess("Compte créé avec succès");
+      setError("");
+    } else {
+      const data = await response.json();
+      setError(data.error || "Une erreur s'est produite");
+      setSuccess("");
+    }
   };
 
   return (
@@ -31,6 +58,8 @@ export default function Register() {
             <h1 className="text-2xl xl:text-3xl font-extrabold">
               Créer un compte
             </h1>
+            {error && <p className="mt-2 text-xs text-red-600 text-center">{error}</p>}
+            {success && <p className="mt-2 text-xs text-green-600 text-center">{success}</p>}
             <div className="w-full flex-1 mt-8">
               <form onSubmit={handleSubmit} className="flex flex-col items-center">
                 <div className="mx-auto max-w-xs w-full">
@@ -40,6 +69,7 @@ export default function Register() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Username"
+                    required
                   />
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -47,6 +77,15 @@ export default function Register() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
+                    required
+                  />
+                  <input
+                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm Password"
+                    required
                   />
                   <button
                     type="submit"
@@ -68,9 +107,9 @@ export default function Register() {
                     <span className="ml-3">S enregistrer</span>
                   </button>
                   <p className="mt-6 text-xs text-gray-600 text-center">
-                    Vous n avez pas de compte ? 
+                    Vous avez déjà un compte ? 
                     <Link href="/login" className="border-b border-gray-500 border-dotted">
-                      Creer un compte 
+                      Se connecter
                     </Link>             
                   </p>
                 </div>

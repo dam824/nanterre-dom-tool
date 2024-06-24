@@ -1,5 +1,7 @@
 'use client';
 
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,11 +9,28 @@ import Link from 'next/link';
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Logic for form submission
-    console.log('Form submitted:', { username, password });
+
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+      const { token } = await response.json();
+      document.cookie = `token=${token}; path=/`;
+      router.push('/dashboard');
+    } else {
+      const data = await response.json();
+      setError(data.error || "Une erreur s'est produite");
+    }
   };
 
   return (
@@ -57,10 +76,10 @@ export default function Login() {
                       <span>Connexion</span>
                     </button>
                     <p className="mt-6 text-xs text-gray-600 text-center">
-                      vous avez deja un compte ?
+                      Vous avez déjà un compte ?
                       <Link href="/register" className="border-b border-gray-500 border-dotted">
                         Se connecter
-                    </Link>
+                      </Link>
                     </p>
                   </div>
                 </form>
