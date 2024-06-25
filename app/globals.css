@@ -31,3 +31,19 @@ body {
     text-wrap: balance;
   }
 }
+
+ 
+body {
+  background: #1a202c;
+  color: #cbd5e0;
+}
+
+.neomorphism {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  background: #2d3748;
+}
+
+header {
+  border-bottom: 2px solid #4a5568;
+}
