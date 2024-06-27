@@ -26,8 +26,6 @@ model User {
 
 model Client {
   id        Int       @id @default(autoincrement())
-  firstName String
-  lastName  String
   phone     String
   society   String
   isActive  Boolean   @default(true)

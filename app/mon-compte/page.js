@@ -45,7 +45,7 @@ export default function MonCompte() {
         e.preventDefault();
 
         const newUsername = e.target.newUsername.value;
-
+        
         const res = await fetch('/api/user/update-profile', {
             method: 'POST',
             headers: {
