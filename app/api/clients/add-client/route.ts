@@ -3,7 +3,7 @@ import { prisma } from '../../../../lib/prisma';
 
 export async function POST(req:NextRequest){
     const {phone, society, isActive } = await req.json();
-    console.log('Received data:', { phone, society, isActive });
+    
 
     try{
         const newClient = await prisma.client.create({
@@ -13,7 +13,7 @@ export async function POST(req:NextRequest){
                 isActive,
             },
         });
-        console.log('Client created:', newClient);
+         
         return NextResponse.json(newClient);
     }catch(error){
         console.error('Error adding client:', error);
