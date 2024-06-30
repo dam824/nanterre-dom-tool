@@ -1,0 +1,18 @@
+diff --git a/node_modules/prisma/build/child.js b/node_modules/prisma/build/child.js
+index 3aab50f..4c53e2c 100644
+--- a/node_modules/prisma/build/child.js
++++ b/node_modules/prisma/build/child.js
+@@ -9,7 +9,8 @@ var crypto = require('crypto');
+ var Stream = require('stream');
+ var http = require('http');
+ var Url = require('url');
+-var require$$0$1 = require('punycode');
++//var require$$0$1 = require('punycode');
++var require$$0$1 = require('punycode/');
+ var https = require('https');
+ var zlib = require('zlib');
+ 
+diff --git a/node_modules/prisma/libquery_engine-darwin-arm64.dylib.node b/node_modules/prisma/libquery_engine-darwin-arm64.dylib.node
+new file mode 100755
+index 0000000..f954016
+Binary files /dev/null and b/node_modules/prisma/libquery_engine-darwin-arm64.dylib.node differ
