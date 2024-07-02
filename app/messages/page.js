@@ -1,44 +1,106 @@
-// components/MessagesTable.js
-const MessagesTable = ({ messages, onEdit, onDelete }) => {
+// app/messages/page.js
+'use client';
+
+import { useState, useEffect } from 'react';
+import Sidebar from '../../components/Sidebar';
+import MessageForm from '../../components/MessageForm';
+import MessagesTable from '../../components/MessagesTable';
+
+const Messages = () => {
+  const [messages, setMessages] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState(null);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      const res = await fetch('/api/messages/get-all-message');
+      const data = await res.json();
+      setMessages(data);
+    };
+    fetchMessages();
+  }, []);
+
+  const handleAddMessage = async (message) => {
+    const res = await fetch('/api/messages/create-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(message),
+    });
+    if (res.ok) {
+      const newMessage = await res.json();
+      setMessages([...messages, newMessage]);
+      setShowForm(false);
+    }
+  };
+
+  const handleEditMessage = (message) => {
+    setCurrentMessage(message);
+    setShowForm(true);
+  };
+
+  const handleUpdateMessage = async (message) => {
+    const res = await fetch('/api/messages/update-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...currentMessage, ...message }),
+    });
+    if (res.ok) {
+      const updatedMessage = await res.json();
+      setMessages(messages.map((msg) => (msg.id === updatedMessage.id ? updatedMessage : msg)));
+      setShowForm(false);
+      setCurrentMessage(null);
+    }
+  };
+
+  const handleDeleteMessage = async (id) => {
+    const res = await fetch('/api/messages/delete-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    if (res.ok) {
+      setMessages(messages.filter((msg) => msg.id !== id));
+    }
+  };
+
+  const handleSubmit = (message) => {
+    if (currentMessage) {
+      handleUpdateMessage(message);
+    } else {
+      handleAddMessage(message);
+    }
+  };
+
   return (
-    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-        <tr>
-          <th scope="col" className="px-6 py-3 text-white">
-            Title
-          </th>
-          <th scope="col" className="px-6 py-3 text-white">
-            Content
-          </th>
-          <th scope="col" className="px-6 py-3 text-white">
-            Actions
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {messages.map((message) => (
-          <tr key={message.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td className="px-6 py-4">{message.title}</td>
-            <td className="px-6 py-4">{message.content}</td>
-            <td className="px-6 py-4 flex space-x-2">
-              <button
-                onClick={() => onEdit(message)}
-                className="px-4 py-2 bg-blue-500 text-white rounded"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => onDelete(message.id)}
-                className="px-4 py-2 bg-red-500 text-white rounded"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="flex h-screen">
+      <Sidebar />
+      <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-gray-50 shadow-md">
+        <div className="p-4 border-2 border-gray-200 mt-14 flex flex-col flex-1 rounded-2xl">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold text-black">Message Templates</h2>
+            <button
+              onClick={() => { setShowForm(true); setCurrentMessage(null); }}
+              className="px-4 py-2 bg-[#f44336d4] text-white rounded"
+            >
+              Add Message Template
+            </button>
+          </div>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
+            <MessagesTable
+              messages={messages}
+              onEdit={handleEditMessage}
+              onDelete={handleDeleteMessage}
+            />
+          </div>
+          {showForm && (
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
+              <MessageForm onSubmit={handleSubmit} initialData={currentMessage} />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default MessagesTable;
+export default Messages;
