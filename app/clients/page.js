@@ -128,118 +128,98 @@ export default function Clients() {
 
     return (
         <div className="flex h-screen">
-            <Sidebar />
-            <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-white">
-                <div className="p-4 border-2 rounded-lg mt-14 flex flex-col flex-1">
-                    <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-2xl font-bold text-[#f44336d4]">Clients</h2>
-                        <button
-                            className="px-4 py-2 bg-[#f44336d4] text-white rounded"
-                            onClick={handleShowForm}
-                        >
-                            {showForm ? "Cancel" : "Add Client"}
-                        </button>
-                    </div>
-
-                    {showForm && (
-                        <form onSubmit={isEditing ? handleUpdateClient : handleSubmit} className="mb-4">
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">
-                                    Society
-                                </label>
-                                <input
-                                    type="text"
-                                    name="society"
-                                    value={formData.society}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">
-                                    Phone
-                                </label>
-                                <input
-                                    type="text"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">
-                                    Active
-                                </label>
-                                <input
-                                    type="checkbox"
-                                    name="isActive"
-                                    checked={formData.isActive}
-                                    onChange={handleInputChange}
-                                    className="mt-1"
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                className="px-4 py-2 bg-green-600 text-white rounded"
-                            >
-                                {isEditing ? "Update Client" : "Add Client"}
+          <Sidebar />
+          <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-white">
+            <div className="p-4 border-2 rounded-lg mt-14 flex flex-col flex-1">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold text-[#f44336d4]">Clients</h2>
+                <button className="px-4 py-2 bg-[#f44336d4] text-white rounded" onClick={handleShowForm}>
+                  {showForm ? "Cancel" : "Add Client"}
+                </button>
+              </div>
+              {showForm && (
+                <form onSubmit={isEditing ? handleUpdateClient : handleSubmit} className="mb-4">
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">Society</label>
+                    <input
+                      type="text"
+                      name="society"
+                      value={formData.society}
+                      onChange={handleInputChange}
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">Phone</label>
+                    <input
+                      type="text"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">Active</label>
+                    <input
+                      type="checkbox"
+                      name="isActive"
+                      checked={formData.isActive}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                    />
+                  </div>
+                  <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded">
+                    {isEditing ? "Update Client" : "Add Client"}
+                  </button>
+                </form>
+              )}
+              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+                  <thead className="text-xs text-gray-900 uppercase bg-gray-100 dark:bg-gray-200">
+                    <tr className="bg-[#f44336d4]">
+                      <th scope="col" className="px-6 py-3 text-white">Nom du client</th>
+                      <th scope="col" className="px-6 py-3 text-white">Téléphone</th>
+                      <th scope="col" className="px-6 py-3 text-white">Courrier reçu</th>
+                      <th scope="col" className="px-6 py-3 text-white">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {clients && clients.length > 0 ? (
+                      clients.map((client) => (
+                        <tr key={client.id} className="odd:bg-white even:bg-gray-50">
+                          <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {client.society}
+                          </th>
+                          <td className="px-6 py-4">{client.phone}</td>
+                          <td className="px-6 py-4">{client.messages ? client.messages.length : 0}</td>
+                          <td className="px-6 py-4 flex">
+                            <button onClick={() => handleEditClient(client)} className="font-medium text-blue-700 hover:underline mr-5">
+                              Modifier
                             </button>
-                        </form>
+                            <button onClick={() => handleDeleteClient(client.id)} className="font-medium text-red-600 hover:underline">
+                              Supprimer
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="4" className="px-6 py-4 text-center text-gray-700">
+                          Aucun client trouvé.
+                        </td>
+                      </tr>
                     )}
-
-                    <div className="relative overflow-x-auto  shadow-md sm:rounded-lg">
-                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" className="px-6 py-3">
-                                        Client
-                                    </th>
-                                    <th scope="col" className="px-6 py-3">
-                                        Tel :
-                                    </th>
-                                    <th scope="col" className="px-6 py-3">
-                                        Adresse
-                                    </th>
-                                    <th scope="col" className="px-6 py-3">
-                                        Options
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {clients.map((client) => (
-                                    <tr key={client.id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                        <th
-                                            scope="row"
-                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                        >
-                                            {client.society}
-                                        </th>
-                                        <td className="px-6 py-4">{client.phone}</td>
-                                        <td className="px-6 py-4">{client.society}</td>
-                                        <td className="px-6 py-4">
-                                            <button
-                                                onClick={() => handleEditClient(client)}
-                                                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                            >
-                                                Edit
-                                            </button>
-                                            <button 
-                                                onClick={() => handleDeleteClient(client.id)}
-                                                className="font-medium text-red-600 dark:text-red-500 ml-5 hover:underline"
-                                            >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                  </tbody>
+                </table>
+              </div>
             </div>
+          </div>
         </div>
-    );
+      );
+      
+      
+      
 }

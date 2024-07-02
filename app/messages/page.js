@@ -75,7 +75,7 @@ const Messages = () => {
     <div className="flex h-screen">
       <Sidebar />
       <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-gray-50 shadow-md">
-        <div className="p-4 border-2 border-gray-200 mt-14 flex flex-col flex-1 rounded-2xl">
+        <div className="p-4 border-2 border-gray-200 mt-14 flex flex-col flex-1 rounded-2xl bg-white">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold text-black">Message Templates</h2>
             <button
@@ -85,7 +85,7 @@ const Messages = () => {
               Add Message Template
             </button>
           </div>
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4 bg-white">
             {messages.length > 0 ? (
               <MessagesTable
                 messages={messages}
@@ -97,7 +97,7 @@ const Messages = () => {
             )}
           </div>
           {showForm && (
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4 bg-white">
               <MessageForm onSubmit={handleSubmit} initialData={currentMessage} />
             </div>
           )}
