@@ -86,11 +86,15 @@ const Messages = () => {
             </button>
           </div>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
-            <MessagesTable
-              messages={messages}
-              onEdit={handleEditMessage}
-              onDelete={handleDeleteMessage}
-            />
+            {messages.length > 0 ? (
+              <MessagesTable
+                messages={messages}
+                onEdit={handleEditMessage}
+                onDelete={handleDeleteMessage}
+              />
+            ) : (
+              <div className="text-center text-gray-500">No messages found.</div>
+            )}
           </div>
           {showForm && (
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
