@@ -1,9 +1,11 @@
 // components/MessagesTable.js
-
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const MessagesTable = ({ messages, onEdit, onDelete }) => {
+  if (!messages || !onEdit || !onDelete) {
+    return null;
+  }
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -32,27 +34,13 @@ const MessagesTable = ({ messages, onEdit, onDelete }) => {
             ))
           ) : (
             <tr>
-              <td colSpan="3" className="px-6 py-4 text-center text-gray-700">
-                No messages found.
-              </td>
+              <td colSpan="3" className="px-6 py-4 text-center text-gray-700">No messages found.</td>
             </tr>
           )}
         </tbody>
       </table>
     </div>
   );
-};
-
-MessagesTable.propTypes = {
-  messages: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default MessagesTable;
