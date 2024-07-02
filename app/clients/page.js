@@ -129,12 +129,12 @@ export default function Clients() {
     return (
         <div className="flex h-screen">
             <Sidebar />
-            <div className="flex-1 p-4 sm:ml-64 flex flex-col">
-                <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14 flex flex-col flex-1">
+            <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-white">
+                <div className="p-4 border-2 rounded-lg mt-14 flex flex-col flex-1">
                     <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-2xl font-bold">Clients</h2>
+                        <h2 className="text-2xl font-bold text-[#f44336d4]">Clients</h2>
                         <button
-                            className="px-4 py-2 bg-blue-600 text-white rounded"
+                            className="px-4 py-2 bg-[#f44336d4] text-white rounded"
                             onClick={handleShowForm}
                         >
                             {showForm ? "Cancel" : "Add Client"}
@@ -190,7 +190,7 @@ export default function Clients() {
                         </form>
                     )}
 
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <div className="relative overflow-x-auto  shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>

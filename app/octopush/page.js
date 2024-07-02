@@ -1,9 +1,10 @@
+// app/octopush/page.js
 'use client';
 
 import { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar';
 import ClientSearch from '../../components/ClientSearch';
-import MessageForm from '../../components/MessageForm';
+import MessageSelectForm from '../../components/MessageSelectForm';
 
 const OctopushPage = () => {
   const [clients, setClients] = useState([]);
@@ -66,25 +67,24 @@ const OctopushPage = () => {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-1 p-4 sm:ml-64 flex flex-col">
-        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14 flex flex-col flex-1">
-          <h2 className="text-2xl font-bold mb-4">Send SMS via Octopush</h2>
+      <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-gray-50 shadow-md">
+        <div className="p-4 border-2 border-gray-200 mt-14 flex flex-col flex-1 rounded-2xl">
+          <h2 className="text-2xl font-bold mb-4 text-black">Send SMS via Octopush</h2>
           <div className="flex">
-            <div className="w-1/2">
+            <div className="w-1/2 p-2">
               <ClientSearch clients={clients} onSelect={handleSelectClient} />
             </div>
-            <div className="w-1/2">
-              <MessageForm
-                onSubmit={handleSendSMS}
-                templates={templates}
-              />
+            <div className="w-1/2 p-2">
+              <MessageSelectForm onSubmit={handleSendSMS} templates={templates} />
             </div>
           </div>
-          <div className="mt-4">
-            <h3 className="text-lg font-bold mb-2">Selected Clients:</h3>
+          <div className="mt-4 p-2">
+            <h3 className="text-lg font-bold mb-2 text-black">Selected Clients:</h3>
             <ul>
-              {selectedClients.map(client => (
-                <li key={client.id}>{client.society} ({client.phone})</li>
+              {selectedClients.map((client) => (
+                <li key={client.id} className="text-black">
+                  {client.society} ({client.phone})
+                </li>
               ))}
             </ul>
           </div>

@@ -40,7 +40,7 @@ export default function Login() {
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div>
               <Image
-                src="https://www.nanterredom.fr/images/logo.png"
+                src="/nanterre-dom-logo-sidebar.png"
                 alt="nanterredom logo"
                 width={128}
                 height={128}

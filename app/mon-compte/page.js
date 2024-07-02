@@ -66,90 +66,92 @@ export default function MonCompte() {
 
     return (
         <div className="flex h-screen">
-            <Sidebar />
-            <div className="flex-1 p-4 sm:ml-64 flex flex-col">
-                <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14 flex flex-col flex-1">
-                    <h2 className="text-2xl font-bold mb-4">Mon Compte</h2>
-                    <div className="flex flex-col space-y-4">
-                        <div>
-                            <span className="font-bold">Username: </span>
-                            <span>{user.username}</span>
-                        </div>
-                        <div>
-                            <button
-                                className="px-4 py-2 bg-blue-600 text-white rounded"
-                                onClick={() => setShowPasswordForm(!showPasswordForm)}
-                            >
-                                Modifier Mot de Passe
-                            </button>
-                        </div>
-                        {showPasswordForm && (
-                            <form onSubmit={handleUpdatePassword} className='max-w-sm mx-auto'>
-                                <div className='mb-5'>
-                                    <label htmlFor="oldPassword" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Ancien mot de passe
-                                    </label>
-                                    <input
-                                        type="password"
-                                        id="oldPassword"
-                                        name="oldPassword"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
-                                    />
-                                </div>
-                                <div className="mb-5">
-                                    <label htmlFor="newPassword" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Nouveau mot de passe
-                                    </label>
-                                    <input
-                                        type="password"
-                                        id="newPassword"
-                                        name="newPassword"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
-                                    />
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                    Modifier
-                                </button>
-                            </form>
-                        )}
-                        <div>
-                            <button
-                                className="px-4 py-2 bg-blue-600 text-white rounded"
-                                onClick={() => setShowProfileForm(!showProfileForm)}
-                            >
-                                Modifier profil
-                            </button>
-                        </div>
-                        {showProfileForm && (
-                            <form onSubmit={handleUpdateProfile} className="max-w-sm mx-auto">
-                                <div className="mb-5">
-                                    <label htmlFor="newUsername" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Nouveau nom d utilisateur
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="newUsername"
-                                        name="newUsername"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
-                                    />
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                    Modifier
-                                </button>
-                            </form>
-                        )}
-                    </div>
+          <Sidebar />
+          <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-gray-100 ">
+            <div className="p-4 border-2 mt-14 flex flex-col flex-1 bg-white shadow-lg rounded-lg">
+              <h2 className="text-2xl font-bold mb-4 text-gray-900">Mon Compte</h2>
+              <div className="flex flex-col space-y-4">
+                <div>
+                  <span className="font-bold text-gray-900">Username: </span>
+                  <span className="text-gray-900">{user.username}</span>
                 </div>
+                <div>
+                  <button
+                    className="px-4 py-2 bg-[#f44336d4] text-white rounded"
+                    onClick={() => setShowPasswordForm(!showPasswordForm)}
+                  >
+                    Modifier Mot de Passe
+                  </button>
+                </div>
+                {showPasswordForm && (
+                  <form onSubmit={handleUpdatePassword} className="max-w-sm mx-auto p-4 bg-white shadow-lg rounded-lg border border-gray-200">
+                    <div className="mb-5">
+                      <label htmlFor="oldPassword" className="block mb-2 text-sm font-medium text-gray-900">
+                        Ancien mot de passe
+                      </label>
+                      <input
+                        type="password"
+                        id="oldPassword"
+                        name="oldPassword"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#F44336] focus:border-[#F44336] block w-full p-2.5"
+                        required
+                      />
+                    </div>
+                    <div className="mb-5">
+                      <label htmlFor="newPassword" className="block mb-2 text-sm font-medium text-gray-900">
+                        Nouveau mot de passe
+                      </label>
+                      <input
+                        type="password"
+                        id="newPassword"
+                        name="newPassword"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#F44336] focus:border-[#F44336] block w-full p-2.5"
+                        required
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="text-white bg-[#f44336d4] hover:bg-[#d4372d] focus:ring-4 focus:outline-none focus:ring-[#F44336] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                    >
+                      Modifier
+                    </button>
+                  </form>
+                )}
+                <div>
+                  <button
+                    className="px-4 py-2 bg-[#f44336d4] text-white rounded"
+                    onClick={() => setShowProfileForm(!showProfileForm)}
+                  >
+                    Modifier profil
+                  </button>
+                </div>
+                {showProfileForm && (
+                  <form onSubmit={handleUpdateProfile} className="max-w-sm mx-auto p-4 bg-white shadow-lg rounded-lg border border-gray-200">
+                    <div className="mb-5">
+                      <label htmlFor="newUsername" className="block mb-2 text-sm font-medium text-gray-900">
+                        Nouveau nom d utilisateur
+                      </label>
+                      <input
+                        type="text"
+                        id="newUsername"
+                        name="newUsername"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#F44336] focus:border-[#F44336] block w-full p-2.5"
+                        required
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="text-white bg-[#F44336] hover:bg-[#d4372d] focus:ring-4 focus:outline-none focus:ring-[#F44336] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                    >
+                      Modifier
+                    </button>
+                  </form>
+                )}
+              </div>
             </div>
+          </div>
         </div>
-    );
+      );
+      
+      
 };
