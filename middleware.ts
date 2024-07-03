@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
 
     if (!token) {
         console.log('Middleware: No token found, redirecting to /login');
-        const url = new URL ('/login', req.url);
+        const url = new URL('/login', req.nextUrl.origin);
         return NextResponse.redirect(url);
     }
 
@@ -20,12 +20,11 @@ export async function middleware(req: NextRequest) {
     } catch (error) {
         const err = error as Error;
         console.log('Middleware: Invalid token, redirecting to /login', err.message);
-        const url = new URL('/login', req.url);
+        const url = new URL('/login', req.nextUrl.origin);
         return NextResponse.redirect(url);
     }
 }
 
 export const config = {
     matcher: ['/dashboard/:path*', '/mon-compte/:path*', '/clients/:path*', '/twilio/:path*'],
-
 };
