@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Page de connexion
 
-## Getting Started
+Ceci est la page de connexion de l'application. Les utilisateurs saisissent leur nom d'utilisateur et leur mot de passe pour accéder au système. La page présente un design épuré avec un formulaire de connexion à gauche et une image de paysage urbain à droite. Le bouton "Connexion" soumet le formulaire de connexion.
 
-First, run the development server:
+Gestion des clients
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Cette page permet aux utilisateurs de gérer leurs clients. Les utilisateurs peuvent voir une liste de clients avec des colonnes pour le nom du client, le numéro de téléphone, le nombre de courriers reçus et les actions (modifier ou supprimer). Le bouton "Add Client" ouvre un formulaire pour ajouter un nouveau client. Chaque ligne de client comprend des boutons pour modifier ou supprimer le client.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Gestion des modèles de messages
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Cette page est destinée à la gestion des modèles de messages. Les utilisateurs peuvent voir une liste de modèles de messages avec des colonnes pour le titre du modèle, le contenu et les actions (modifier ou supprimer). Le bouton "Add Message Template" ouvre un formulaire pour créer un nouveau modèle de message.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Envoi de SMS via Octopush
 
-## Learn More
+Cette page permet aux utilisateurs d'envoyer des messages SMS en utilisant le service Octopush. Les utilisateurs peuvent sélectionner des clients dans la liste de gauche et choisir un modèle de message dans le menu déroulant à droite. Le formulaire comprend des champs pour le titre et le contenu du message, qui sont pré-remplis en fonction du modèle sélectionné. Le bouton "Submit" envoie le SMS aux clients sélectionnés.
 
-To learn more about Next.js, take a look at the following resources:
+Gestion du compte utilisateur
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ceci est la page de gestion du compte utilisateur. Les utilisateurs peuvent voir leur nom d'utilisateur et ont des options pour modifier leur mot de passe et leurs informations de profil. La page comprend des boutons pour "Modifier Mot de Passe" et "Modifier profil".
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Vue d'ensemble du tableau de bord
 
-## Deploy on Vercel
+Le tableau de bord fournit une vue d'ensemble des principales métriques de l'application, y compris le nombre de clients, le solde restant et le nombre total de messages envoyés. Sous les métriques, il y a un tableau des clients similaire à celui de la page de gestion des clients, avec des colonnes pour le nom du client, le numéro de téléphone, le nombre de courriers reçus et les actions (modifier ou supprimer).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Modifier le compte utilisateur
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Ceci est la page de modification du compte utilisateur, où les utilisateurs peuvent mettre à jour leurs informations de profil. Le formulaire permet aux utilisateurs de changer leur nom d'utilisateur et leur mot de passe. La page assure que les utilisateurs peuvent facilement mettre à jour les détails de leur compte.
