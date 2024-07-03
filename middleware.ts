@@ -8,7 +8,8 @@ export async function middleware(req: NextRequest) {
 
     if (!token) {
         console.log('Middleware: No token found, redirecting to /login');
-        return NextResponse.redirect(new URL('/login', req.url));
+        const url = new URL ('/login', req.url);
+        return NextResponse.redirect(url);
     }
 
     try {
@@ -19,7 +20,8 @@ export async function middleware(req: NextRequest) {
     } catch (error) {
         const err = error as Error;
         console.log('Middleware: Invalid token, redirecting to /login', err.message);
-        return NextResponse.redirect(new URL('/login', req.url));
+        const url = new URL('/login', req.url);
+        return NextResponse.redirect(url);
     }
 }
 
