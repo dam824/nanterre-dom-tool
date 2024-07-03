@@ -15,9 +15,6 @@ export default function ClientTable({ clients }) {
               Courrier reçu
             </th>
             <th scope="col" className="px-6 py-3 text-white">
-              Adresse
-            </th>
-            <th scope="col" className="px-6 py-3 text-white">
               Action
             </th>
           </tr>
@@ -39,20 +36,25 @@ export default function ClientTable({ clients }) {
                 <td className="px-6 py-4">
                   {client.messages ? client.messages.length : 0}
                 </td>
-                <td className="px-6 py-4">{client.address}</td>
-                <td className="px-6 py-4">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-700 hover:underline"
+                <td className="px-6 py-4 flex">
+                  <button
+                    onClick={() => handleEditClient(client)}
+                    className="font-medium text-blue-700 hover:underline mr-5"
                   >
                     Edit
-                  </a>
+                  </button>
+                  <button
+                    onClick={() => handleDeleteClient(client.id)}
+                    className="font-medium text-red-600 hover:underline"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="5" className="px-6 py-4 text-center text-gray-700">
+              <td colSpan="4" className="px-6 py-4 text-center text-gray-700">
                 Aucun client trouvé.
               </td>
             </tr>
@@ -61,4 +63,5 @@ export default function ClientTable({ clients }) {
       </table>
     </div>
   );
+  
 }
