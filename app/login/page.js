@@ -3,6 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import BackgroundAnimation from '../../components/BackgroundAnimation';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -35,8 +36,9 @@ export default function Login() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-        <div className="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+      <div className="relative min-h-screen flex justify-center items-center">
+        <BackgroundAnimation />
+        <div className="relative z-10 max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div>
               <Image

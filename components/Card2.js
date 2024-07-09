@@ -1,5 +1,6 @@
-// /components/Card2.js
+ 
 import { useEffect, useState } from 'react';
+import { FaMoneyBillWave } from 'react-icons/fa';
 
 const Card2 = () => {
   const [balance, setBalance] = useState(null);
@@ -25,13 +26,16 @@ const Card2 = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full bg-white shadow-lg rounded-lg p-4 border border-gray-200">
-      <h2 className="mb-2 text-2xl font-bold tracking-tight text-[#F44336]">
-        Montant restants 
-      </h2>
-      <p className="text-xl text-gray-700">
-        {balance !== null ? `${balance} ${unit}` : 'Chargement...'}
-      </p>
+    <div className="flex items-center p-4 bg-white shadow-lg rounded-lg border-l-4 border-[#F44336]">
+      <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-tr from-[#F44336] to-red-400 text-white rounded-full shadow-md shadow-red-500/40 mr-3">
+        <FaMoneyBillWave size={24} />
+      </div>
+      <div>
+        <h2 className="text-lg font-bold text-gray-900">
+          {balance !== null ? `${balance} ${unit}` : 'Chargement...'}
+        </h2>
+        <p className="text-sm text-gray-400">Montant restants</p>
+      </div>
     </div>
   );
 };
