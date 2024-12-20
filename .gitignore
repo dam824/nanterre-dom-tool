@@ -37,3 +37,6 @@ next-env.d.ts
 
 #credentials
 credentials.txt
+
+#clients
+clients_standardized.json
