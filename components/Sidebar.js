@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 const Sidebar = () => {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isUserMenuOpen, setUserMenuOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -23,6 +25,14 @@ const Sidebar = () => {
     router.push("/login");
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleUserMenu = () => {
+    setUserMenuOpen(!isUserMenuOpen);
+  };
+
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-300 dark:bg-gray-100 dark:border-gray-300">
@@ -30,11 +40,9 @@ const Sidebar = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
               <button
-                data-drawer-target="logo-sidebar"
-                data-drawer-toggle="logo-sidebar"
+                onClick={toggleSidebar}
                 aria-controls="logo-sidebar"
-                type="button"
-                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-200 dark:focus:ring-gray-300"
+                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
               >
                 <span className="sr-only">Open sidebar</span>
                 <svg
@@ -51,7 +59,7 @@ const Sidebar = () => {
                   ></path>
                 </svg>
               </button>
-              <a href="https://flowbite.com" className="flex ms-2 md:me-24">
+              <a href="/" className="flex ms-2 md:me-24">
                 <Image
                   src="/nanterre-dom-logo-sidebar.png"
                   alt="Nanterre Dom Logo"
@@ -65,10 +73,8 @@ const Sidebar = () => {
               <div className="flex items-center ms-3">
                 <div>
                   <button
-                    type="button"
-                    className="flex text-sm bg-gray-200 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-300"
-                    aria-expanded="false"
-                    data-dropdown-toggle="dropdown-user"
+                    onClick={toggleUserMenu}
+                    className="flex text-sm bg-gray-200 rounded-full focus:ring-4 focus:ring-gray-300"
                   >
                     <span className="sr-only">Open user menu</span>
                     <Image
@@ -81,63 +87,7 @@ const Sidebar = () => {
                     />
                   </button>
                 </div>
-                <div
-                  className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-200 rounded shadow dark:bg-gray-100 dark:divide-gray-300"
-                  id="dropdown-user"
-                >
-                  <div className="px-4 py-3" role="none">
-                    <p
-                      className="text-sm text-gray-900 dark:text-gray-800"
-                      role="none"
-                    >
-                      Neil Sims
-                    </p>
-                    <p
-                      className="text-sm font-medium text-gray-900 truncate dark:text-gray-600"
-                      role="none"
-                    >
-                      neil.sims@flowbite.com
-                    </p>
-                  </div>
-                  <ul className="py-1" role="none">
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-600 dark:hover:bg-gray-200 dark:hover:text-gray-800"
-                        role="menuitem"
-                      >
-                        Dashboard
-                      </a>
-                    </li>
-                    <li>
-                      <Link
-                        href="/mon-compte"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-600 dark:hover:bg-gray-200 dark:hover:text-gray-800"
-                        role="menuitem"
-                      >
-                        Settings
-                      </Link>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-600 dark:hover:bg-gray-200 dark:hover:text-gray-800"
-                        role="menuitem"
-                      >
-                        Earnings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-600 dark:hover:bg-gray-200 dark:hover:text-gray-800"
-                        role="menuitem"
-                      >
-                        Sign out
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -146,7 +96,9 @@ const Sidebar = () => {
 
       <aside
         id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-300 sm:translate-x-0 dark:bg-gray-100 dark:border-gray-300"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } bg-white border-r border-gray-300 sm:translate-x-0`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-100">
@@ -201,7 +153,6 @@ const Sidebar = () => {
                   <span className="flex-1 ms-3 whitespace-nowrap">
                     Octopush
                   </span>
-                   
                 </a>
               </Link>
             </li>
@@ -278,7 +229,6 @@ const Sidebar = () => {
       </aside>
     </>
   );
-
 };
 
 export default Sidebar;

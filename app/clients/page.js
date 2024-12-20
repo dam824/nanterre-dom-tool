@@ -127,24 +127,29 @@ export default function Clients() {
     };
 
     return (
-      <div className="flex h-screen">
+      <div className="flex flex-col h-screen sm:flex-row">
         <Sidebar />
         <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-gray-50 shadow-md">
           <div className="p-4 border-2 border-gray-200 mt-14 flex flex-col flex-1 rounded-2xl bg-white">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-[#f44336d4]">Clients</h2>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#f44336d4]">Clients</h2>
               <button
                 onClick={handleShowForm}
-                className="px-4 py-2 bg-[#f44336d4] text-white rounded"
+                className="mt-2 sm:mt-0 px-4 py-2 bg-[#f44336d4] text-white rounded w-full sm:w-auto"
               >
                 {showForm ? "Cancel" : "Add Client"}
               </button>
             </div>
             {showForm && (
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4 bg-white p-6">
-                <form onSubmit={isEditing ? handleUpdateClient : handleSubmit} className="space-y-4">
+                <form
+                  onSubmit={isEditing ? handleUpdateClient : handleSubmit}
+                  className="space-y-4"
+                >
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Society</label>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Society
+                    </label>
                     <input
                       type="text"
                       name="society"
@@ -156,7 +161,9 @@ export default function Clients() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Phone</label>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Phone
+                    </label>
                     <input
                       type="text"
                       name="phone"
@@ -168,7 +175,9 @@ export default function Clients() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Active</label>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Active
+                    </label>
                     <input
                       type="checkbox"
                       name="isActive"
@@ -178,7 +187,10 @@ export default function Clients() {
                     />
                   </div>
                   <div className="flex justify-end">
-                    <button type="submit" className="px-4 py-2 bg-[#f44336d4] text-white rounded">
+                    <button
+                      type="submit"
+                      className="px-4 py-2 bg-[#f44336d4] text-white rounded"
+                    >
                       {isEditing ? "Update Client" : "Add Client"}
                     </button>
                   </div>
@@ -189,26 +201,62 @@ export default function Clients() {
               <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead className="text-xs text-gray-900 uppercase bg-gray-100 dark:bg-gray-200">
                   <tr className="bg-[#f44336d4]">
-                    <th scope="col" className="px-6 py-3 text-white">Nom du client</th>
-                    <th scope="col" className="px-6 py-3 text-white">Téléphone</th>
-                    <th scope="col" className="px-6 py-3 text-white">Courrier reçu</th>
-                    <th scope="col" className="px-6 py-3 text-white">Action</th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-white text-center sm:text-left"
+                    >
+                      Nom du client
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-white text-center sm:text-left"
+                    >
+                      Téléphone
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-white text-center sm:text-left"
+                    >
+                      Courrier reçu
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-white text-center sm:text-left"
+                    >
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {clients && clients.length > 0 ? (
                     clients.map((client) => (
-                      <tr key={client.id} className="odd:bg-white even:bg-gray-50">
-                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                      <tr
+                        key={client.id}
+                        className="odd:bg-white even:bg-gray-50"
+                      >
+                        <th
+                          scope="row"
+                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center sm:text-left"
+                        >
                           {client.society}
                         </th>
-                        <td className="px-6 py-4">{client.phone}</td>
-                        <td className="px-6 py-4">{client.messages ? client.messages.length : 0}</td>
-                        <td className="px-6 py-4 flex">
-                          <button onClick={() => handleEditClient(client)} className="font-medium text-blue-700 hover:underline mr-5">
+                        <td className="px-6 py-4 text-center sm:text-left">
+                          {client.phone}
+                        </td>
+                        <td className="px-6 py-4 text-center sm:text-left">
+                          {client.messages ? client.messages.length : 0}
+                        </td>
+                        <td className="px-6 py-4 flex justify-center sm:justify-start">
+                          <button
+                            onClick={() => handleEditClient(client)}
+                            className="font-medium text-blue-700 hover:underline mr-5"
+                          >
                             Modifier
                           </button>
-                          <button onClick={() => handleDeleteClient(client.id)} className="font-medium text-red-600 hover:underline">
+                          <button
+                            onClick={() => handleDeleteClient(client.id)}
+                            className="font-medium text-red-600 hover:underline"
+                          >
                             Supprimer
                           </button>
                         </td>
@@ -216,7 +264,10 @@ export default function Clients() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="4" className="px-6 py-4 text-center text-gray-700">
+                      <td
+                        colSpan="4"
+                        className="px-6 py-4 text-center text-gray-700"
+                      >
                         Aucun client trouvé.
                       </td>
                     </tr>
@@ -228,6 +279,8 @@ export default function Clients() {
         </div>
       </div>
     );
+
+
     
     
     
