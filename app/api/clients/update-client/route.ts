@@ -6,7 +6,7 @@ export async function POST(req: NextRequest){
 
     try{
         const updatedClient = await prisma.client.update({
-            where : { id: parseInt(id) },
+            where : { id },
             data: {phone, society, isActive},
         });
         return NextResponse.json(updatedClient);
