@@ -87,7 +87,7 @@ const Sidebar = () => {
                     />
                   </button>
                 </div>
-               
+               é
               </div>
             </div>
           </div>
