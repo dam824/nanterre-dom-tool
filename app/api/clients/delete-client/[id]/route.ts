@@ -6,7 +6,7 @@ export async function DELETE(req: NextRequest, { params }) {
 
     try {
         await prisma.client.delete({
-            where: { id: Number(id) },
+            where: { id  },
         });
         return NextResponse.json({ message: 'Client deleted' });
     } catch (error) {
