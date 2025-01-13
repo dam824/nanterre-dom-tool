@@ -1,9 +1,11 @@
 "use client";
 
 import Sidebar from "../../components/Sidebar";
+ 
 import { useEffect, useState } from "react";
 
 export default function Clients() {
+    const [searchQuery, setSearchQuery] = useState(""); //test barre recherche
     const [showForm, setShowForm] = useState(false);
     const [clients, setClients] = useState([]);
     const [formData, setFormData] = useState({
@@ -126,13 +128,28 @@ export default function Clients() {
         }
     };
 
+   //search query
+    const filteredClients = clients.filter((client) => 
+      client.society.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
       <div className="flex flex-col h-screen sm:flex-row">
         <Sidebar />
         <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-gray-50 shadow-md">
           <div className="p-4 border-2 border-gray-200 mt-14 flex flex-col flex-1 rounded-2xl bg-white">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+             
               <h2 className="text-xl sm:text-2xl font-bold text-[#f44336d4]">Clients</h2>
+               
+               <input
+               type="text"
+              placeholder="Rechercher un client ..."
+              value={searchQuery}
+              onChange = {(e) => setSearchQuery(e.target.value)}
+              className="p-2 border border-gray-300 rounded-lg w-full sm:w-[70%]"
+              />
+              
               <button
                 onClick={handleShowForm}
                 className="mt-2 sm:mt-0 px-4 py-2 bg-[#f44336d4] text-white rounded w-full sm:w-auto"
@@ -228,8 +245,8 @@ export default function Clients() {
                   </tr>
                 </thead>
                 <tbody>
-                  {clients && clients.length > 0 ? (
-                    clients.map((client) => (
+                  {filteredClients && filteredClients.length > 0 ? (
+                    filteredClients.map((client) => (
                       <tr
                         key={client.id}
                         className="odd:bg-white even:bg-gray-50"
