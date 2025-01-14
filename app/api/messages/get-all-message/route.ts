@@ -4,11 +4,7 @@ import { prisma } from '../../../../lib/prisma';
 
 export async function GET(req: NextRequest) {
   try {
-    const templates = await prisma.message.findMany({
-      where: {
-        clientId: null,
-      },
-    });
+    const templates = await prisma.message.findMany();
     return NextResponse.json(templates);
   } catch (error) {
     console.error('Error fetching message templates:', error);

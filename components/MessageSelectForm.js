@@ -13,9 +13,9 @@ const MessageSelectForm = ({ onSubmit, templates }) => {
 
   useEffect(() => {
     if (selectedTemplate) {
-      const template = templates.find(t => t.id === parseInt(selectedTemplate));
+      const template = templates.find(t => t.id === selectedTemplate);
       if (template) {
-        setTitle('Nanterre Dom');
+        setTitle(template.title);
         setContent(template.content);
       }
     }

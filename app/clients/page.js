@@ -78,6 +78,11 @@ export default function Clients() {
             phone: client.phone,
             isActive: client.isActive
         });
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        })
     };
 
     const handleUpdateClient = async (e) => {
