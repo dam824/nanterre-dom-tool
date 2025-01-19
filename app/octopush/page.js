@@ -27,7 +27,13 @@ const OctopushPage = () => {
   }, []);
 
   const handleSelectClient = (client) => {
-    setSelectedClients((prev) => [...prev, client]);
+    if( selectedClients.some((c) => c.id === client.id)){
+      //si le client est deja selectionne, on le retire
+      setSelectedClients((prev) => prev.filter((c) => c.id !== client.id));
+    }else{
+      //sinon on l ajoute 
+      setSelectedClients((prev) => [...prev, client]);
+    }
   };
 
   const handleSendSMS = async (message) => {
