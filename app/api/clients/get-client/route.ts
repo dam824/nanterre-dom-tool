@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
         const clients = await prisma.client.findMany();
         return NextResponse.json(clients, {
             headers: {
-                "Cache-Control": "no-store, max-age=0, must-revalidate"
+                "Cache-Control": "public, max-age=3600, stale-while-revalidate=59",
             }
         });
        
