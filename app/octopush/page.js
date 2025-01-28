@@ -13,12 +13,24 @@ const OctopushPage = () => {
 
   useEffect(() => {
     const fetchClients = async () => {
-      const res = await fetch("/api/clients/get-client");
+      const res = await fetch("/api/clients/get-client", {
+        cache: 'no-store',
+        next: { 
+          tags: ['clients'],
+          revalidate: 0
+        }
+      });
       const data = await res.json();
       setClients(data);
     };
     const fetchTemplates = async () => {
-      const res = await fetch("/api/messages/get-all-message");
+      const res = await fetch("/api/messages/get-all-message", {
+        cache: 'no-store',
+        next: { 
+          tags: ['messages'],
+          revalidate: 0
+        }
+      });
       const data = await res.json();
       setTemplates(data);
     };

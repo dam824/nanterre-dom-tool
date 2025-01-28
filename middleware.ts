@@ -31,5 +31,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/dashboard/:path*', '/mon-compte/:path*', '/clients/:path*', '/twilio/:path*'],
+    matcher: ['/dashboard/:path*', '/mon-compte/:path*', '/clients/:path*', '/twilio/:path*', '/messages/:path*','/api/messages/:path*'],
 };

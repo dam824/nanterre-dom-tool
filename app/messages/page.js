@@ -13,7 +13,13 @@ const Messages = () => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await fetch('/api/messages/get-all-message');
+      const res = await fetch('/api/messages/get-all-message', {
+        cache: 'no-store',
+        next: { 
+          tags: ['messages'],
+          revalidate: 0
+        }
+      });
       const data = await res.json();
       setMessages(data);
     };
@@ -25,11 +31,24 @@ const Messages = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(message),
+      cache: 'no-store'
     });
     if (res.ok) {
       const newMessage = await res.json();
       setMessages([...messages, newMessage]);
       setShowForm(false);
+
+         // Re-fetch après création
+    const refreshRes = await fetch('/api/messages/get-all-message', {
+      cache: 'no-store',
+      next: { 
+        tags: ['messages'],
+        revalidate: 0
+      }
+    });
+    const refreshedData = await refreshRes.json();
+    setMessages(refreshedData);
+
     }
   };
 
@@ -43,12 +62,25 @@ const Messages = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...currentMessage, ...message }),
+      cache: 'no-store'
     });
     if (res.ok) {
       const updatedMessage = await res.json();
       setMessages(messages.map((msg) => (msg.id === updatedMessage.id ? updatedMessage : msg)));
       setShowForm(false);
       setCurrentMessage(null);
+
+      // Re-fetch après mise à jour
+    const refreshRes = await fetch('/api/messages/get-all-message', {
+      cache: 'no-store',
+      next: { 
+        tags: ['messages'],
+        revalidate: 0
+      }
+    });
+    const refreshedData = await refreshRes.json();
+    setMessages(refreshedData);
+    
     }
   };
 
