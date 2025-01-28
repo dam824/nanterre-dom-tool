@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from '../../../../lib/prisma';
-import { headers } from "next/headers";
+import { revalidateTag } from 'next/cache'
 
 export async function GET(req: NextRequest) {
     try {
         const clients = await prisma.client.findMany();
+        revalidateTag('clients')
         return NextResponse.json(clients, {
             headers: {
-                "Cache-Control": "public, max-age=3600, stale-while-revalidate=59",
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
             }
         });
        
