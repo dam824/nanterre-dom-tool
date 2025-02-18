@@ -9,7 +9,7 @@ const Sidebar = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
-
+  
   useEffect(() => {
     setIsMounted(true);
   }, []);
