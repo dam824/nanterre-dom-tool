@@ -36,8 +36,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-#credentials
+# credentials
 credentials.txt
 
-#clients
+# clients
 clients_standardized.json
+
+# logs
+log-local.txt
+log-vercel.txt
