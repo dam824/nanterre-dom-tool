@@ -49,6 +49,8 @@ const OctopushPage = () => {
   };
 
   const handleSendSMS = async (message) => {
+    let failedClients = []; 
+
     for (const client of selectedClients) {
       const phoneNumber = formatPhoneNumber(client.phone);
       try {
@@ -57,17 +59,32 @@ const OctopushPage = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ to: phoneNumber, body: message.content }),
         });
+
         const data = await res.json();
-        if (res.ok) {
+       /*  if (res.ok) {
           alert(`Message sent to ${client.society}!`);
         } else {
           alert(`Failed to send message to ${client.society}: ${data.error}`);
         }
+      
       } catch (error) {
         console.error("Error sending SMS:", error);
         alert(`Error sending SMS to ${client.society}: ${error.message}`);
-      }
+      } */
+        if (!res.ok) {
+          failedClients.push(client.society);
+        }
+      } catch (error) {
+        console.error("Error sending SMS:", error);
+        failedClients.push(client.society);
+      } 
     }
+    if (failedClients.length > 0) {
+      alert(`Certains messages n'ont pas pu être envoyés à : ${failedClients.join(", ")}`);
+    } else {
+      alert("Tous les messages ont bien été envoyés !");
+    }
+    
   };
 
   const formatPhoneNumber = (phone) => {

@@ -1,0 +1,43 @@
+
+Feb 21 17:18:31.76
+POST
+200
+nanterre-dom-tool.vercel.app
+/api/octopush/send-message
+6
+Octopush API response: {"sms_ticket":"sms_67b8a758061d8756188834","number_of_contacts":1,"total_cost":0.061,"number_of_sms_needed":1,"residual_credit":60.33}
+Feb 21 17:18:30.56
+POST
+200
+nanterre-dom-tool.vercel.app
+/api/octopush/send-message
+6
+Octopush API response: {"sms_ticket":"sms_67b8a756d416c990197637","number_of_contacts":1,"total_cost":0.061,"number_of_sms_needed":1,"residual_credit":60.39}
+Feb 21 17:18:28.43
+POST
+200
+nanterre-dom-tool.vercel.app
+/api/octopush/send-message
+6
+Octopush API response: {"sms_ticket":"sms_67b8a754eb104757759325","number_of_contacts":1,"total_cost":0.061,"number_of_sms_needed":1,"residual_credit":60.45}
+Feb 21 17:18:04.96
+POST
+200
+nanterre-dom-tool.vercel.app
+/api/octopush/send-message
+6
+Octopush API response: {"sms_ticket":"sms_67b8a73dac58a307004876","number_of_contacts":1,"total_cost":0.061,"number_of_sms_needed":1,"residual_credit":60.51}
+Feb 21 17:17:49.71
+POST
+200
+nanterre-dom-tool.vercel.app
+/api/octopush/send-message
+6
+Octopush API response: {"sms_ticket":"sms_67b8a72e43d27468322875","number_of_contacts":1,"total_cost":0.061,"number_of_sms_needed":1,"residual_credit":60.57}
+Feb 21 17:17:30.46
+POST
+200
+nanterre-dom-tool.vercel.app
+/api/octopush/send-message
+6
+Octopush API response: {"sms_ticket":"sms_67b8a71bdda29620577181","number_of_contacts":1,"total_cost":0.061,"number_of_sms_needed":1,"residual_credit":60.63}
