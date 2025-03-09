@@ -8,7 +8,7 @@ const Card3 = ({ title, value }) => {
       </div>
       <div>
       <h2 className="text-lg font-bold text-gray-900">3</h2>
-      <p className="text-sm text-gray-400">Messages envoyes </p>
+      <p className="text-sm text-gray-400">Messages envoyés </p>
       </div>
     </div>
   );
