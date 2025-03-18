@@ -26,10 +26,11 @@ model User {
 
 model Client {
   id        String       @id @default(auto()) @map("_id") @db.ObjectId
-  phone     String
-  society   String
-  isActive  Boolean   @default(true)
+  phone     String       
+  society   String       @unique
+  isActive  Boolean     @default(true)
   messages  Message[]
+  messagesEnvoyes  MessageEnvoyes[]
 }
 
 model Message {
@@ -38,4 +39,20 @@ model Message {
   content  String
   clientId String? @db.ObjectId
   client   Client? @relation(fields: [clientId], references: [id])
+}
+
+model MessageEnvoyes {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  clientId      String?   @db.ObjectId
+  client        Client?   @relation(fields: [clientId], references: [id])
+  clientName    String?
+  phone         String
+  statut        StatutMessage   @default(SUCCESS)
+  sentAt        DateTime     @default(now())
+ 
+}
+
+enum StatutMessage{
+  SUCCESS
+  FAILED
 }

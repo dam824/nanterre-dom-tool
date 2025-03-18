@@ -14,7 +14,7 @@ const Card2 = () => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         const data = await res.json();
-        console.log('API response data:', data); // Log API response data
+         
         setBalance(data.amount);
         setUnit(data.unit);
       } catch (error) {

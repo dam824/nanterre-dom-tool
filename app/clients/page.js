@@ -1,8 +1,9 @@
 "use client";
 
 import Sidebar from "../../components/Sidebar";
-
+import { FaSortUp, FaSortDown } from "react-icons/fa";
 import { useEffect, useState } from "react";
+
 
 export default function Clients() {
   const [searchQuery, setSearchQuery] = useState(""); //test barre recherche
@@ -13,6 +14,7 @@ export default function Clients() {
     phone: "",
     isActive: true,
   });
+  const [sortOrder, setSortOrder ] = useState('asc');
 
   const [isEditing, setIsEditing] = useState(false);
   const [editClientId, setEditClientId] = useState(null);
@@ -27,7 +29,8 @@ export default function Clients() {
         },
       });
       const data = await res.json();
-      setClients(data);
+      const sortedClients = data.sort((a, b) => a.society.localeCompare(b.society))
+      setClients(sortedClients);
     };
     fetchClients();
   }, []);
@@ -164,6 +167,19 @@ export default function Clients() {
     }
   };
 
+  const handleSort = () => {
+    const newSortOrder = sortOrder === "asc" ? "desc" : "asc";
+    setSortOrder(newSortOrder);
+
+    setClients((prevClients) => 
+    [...prevClients].sort((a, b) => 
+    newSortOrder === "asc"
+    ? a.society.localeCompare(b.society)
+    : b.society.localeCompare(a.society)
+  )
+    )
+  }
+
   //search query
   const filteredClients = clients.filter((client) =>
     client.society.toLowerCase().includes(searchQuery.toLowerCase())
@@ -257,9 +273,17 @@ export default function Clients() {
                 <tr className="bg-[#f44336d4]">
                   <th
                     scope="col"
-                    className="px-6 py-3 text-white text-center sm:text-left"
+                    className="px-6 py-3 text-white text-center sm:text-left cursor-pointer"
+                    onClick={handleSort}
                   >
-                    Nom du client
+                    <span className="inline-flex items-center">
+                    Nom du client 
+                    {sortOrder === "asc" ? (
+                      <FaSortUp className="ml-2 text-white" />
+                    ) : (
+                      <FaSortDown className="ml-2 text-white" />
+                    )}
+                    </span>
                   </th>
                   <th
                     scope="col"

@@ -24,7 +24,7 @@ const MessageSelectForm = ({ onSubmit, templates }) => {
   return (
     <form onSubmit={handleSubmit} className="max-w-sm mx-auto p-4 bg-white shadow-lg rounded-lg border border-gray-200">
       <label htmlFor="template" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
-        Choose Template
+        Choisir un template
       </label>
       <select
         id="template"

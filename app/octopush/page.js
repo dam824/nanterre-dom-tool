@@ -88,14 +88,14 @@ const OctopushPage = () => {
   };
 
   const formatPhoneNumber = (phone) => {
-    let cleaned = ("" + phone).replace(/\D/g, ""); // Remove all non-digit characters
+    let cleaned = ("" + phone).replace(/\D/g, "");  s
 
-    // Check if the number starts with "0" and remove it
+     
     if (cleaned.startsWith("0")) {
       cleaned = cleaned.substring(1);
     }
 
-    // Ensure the number starts with the country code "+33" for France
+    
     return "+33" + cleaned;
   };
 
@@ -105,7 +105,7 @@ const OctopushPage = () => {
       <div className="flex-1 p-4 sm:ml-64 flex flex-col bg-gray-50 shadow-md">
         <div className="p-4 border-2 border-gray-200 mt-14 flex flex-col flex-1 rounded-2xl">
           <h2 className="text-2xl font-bold mb-4 text-black">
-            Send SMS via Octopush
+           Envoyer une campagne SMS 
           </h2>
           <div className="flex">
             <div className="w-1/2 p-2">

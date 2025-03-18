@@ -26,7 +26,9 @@ const DashboardPage = () => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         const data = await res.json();
-        setClients(data);
+        const sortedClients = data.sort((a, b) => a.society.localeCompare(b.society));
+
+        setClients(sortedClients);
       } catch (error) {
         console.error('Error fetching clients:', error);
       }
