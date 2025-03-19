@@ -7,6 +7,7 @@ const Card3 = ({ title, value }) => {
   useEffect(()=> {
     const fetchMessageCount = async () => {
       try{
+       
         const res = await fetch('/api/octopush/check-message', {
           cache: "no-store",
         });
@@ -18,9 +19,8 @@ const Card3 = ({ title, value }) => {
     };
     fetchMessageCount();
 
-    //refresh
-    const interval = setInterval(fetchMessageCount, 1000);
-    return () => clearInterval(interval);
+    
+    
   }, [])
   return (
     <div className="flex items-center p-4 bg-white shadow-lg rounded-lg border-l-4 border-[#F44336]">

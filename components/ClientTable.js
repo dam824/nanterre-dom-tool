@@ -5,6 +5,7 @@ export default function ClientTable({ clients, onEditClient, onDeleteClient }) {
   useEffect(() => {
     const fetchMessagesCount = async () => {
       try {
+        console.log("Fetching messages per client..."); // 🔍 Vérification
         const res = await fetch ('/api/octopush/count-client-messages', {
           cache:'no-store',
         });
@@ -16,8 +17,7 @@ export default function ClientTable({ clients, onEditClient, onDeleteClient }) {
     }
 
     fetchMessagesCount();
-    const interval = setInterval(fetchMessagesCount, 5000);
-    return () => clearInterval(interval)
+     
   }, [])
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full bg-white">

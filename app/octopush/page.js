@@ -61,16 +61,7 @@ const OctopushPage = () => {
         });
 
         const data = await res.json();
-       /*  if (res.ok) {
-          alert(`Message sent to ${client.society}!`);
-        } else {
-          alert(`Failed to send message to ${client.society}: ${data.error}`);
-        }
-      
-      } catch (error) {
-        console.error("Error sending SMS:", error);
-        alert(`Error sending SMS to ${client.society}: ${error.message}`);
-      } */
+    
         if (!res.ok) {
           failedClients.push(client.society);
         }
@@ -79,16 +70,12 @@ const OctopushPage = () => {
         failedClients.push(client.society);
       } 
     }
-    if (failedClients.length > 0) {
-      alert(`Certains messages n'ont pas pu être envoyés à : ${failedClients.join(", ")}`);
-    } else {
-      alert("Tous les messages ont bien été envoyés !");
-    }
+    return failedClients.length === 0;
     
   };
 
   const formatPhoneNumber = (phone) => {
-    let cleaned = ("" + phone).replace(/\D/g, "");  s
+    let cleaned = ("" + phone).replace(/\D/g, "");  
 
      
     if (cleaned.startsWith("0")) {

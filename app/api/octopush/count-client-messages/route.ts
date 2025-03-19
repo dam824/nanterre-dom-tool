@@ -4,6 +4,7 @@ import { revalidateTag } from 'next/cache';
 
 export async function GET(req: NextRequest) {
     try {
+       
         // Exécuter l'agrégation brute
         const rawResult = await prisma.messageEnvoyes.aggregateRaw({
             pipeline: [
