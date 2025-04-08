@@ -14,7 +14,15 @@ const MessageSelectForm = ({ onSubmit, templates }) => {
     setIsLoading(true);
     setButtonText("Envoi...");
 
-    const success = await onSubmit({ title, content });
+    const selected = templates.find(t => t.id === selectedTemplate);
+    if (!selected) {
+      setIsLoading(false);
+      setError(true);
+      setButtonText("Erreur");
+      return;
+    }
+
+    const success = await onSubmit(selected);
 
     setIsLoading(false);
     if(success){

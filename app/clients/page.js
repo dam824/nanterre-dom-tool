@@ -3,7 +3,7 @@
 import Sidebar from "../../components/Sidebar";
 import { FaSortUp, FaSortDown } from "react-icons/fa";
 import { useEffect, useState } from "react";
-
+import Link from "next/link";
 
 export default function Clients() {
   const [searchQuery, setSearchQuery] = useState(""); //test barre recherche
@@ -180,6 +180,7 @@ export default function Clients() {
     )
   }
 
+
   //search query
   const filteredClients = clients.filter((client) =>
     client.society.toLowerCase().includes(searchQuery.toLowerCase())
@@ -331,6 +332,17 @@ export default function Clients() {
                         >
                           Modifier
                         </button>
+                        <Link 
+                        href={`/historique/${client.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mr-5 font-medium text-blue-700 hover:underline"
+                        >
+                       
+                          Historique
+                         
+                        </Link>
+                      
                         <button
                           onClick={() => handleDeleteClient(client.id)}
                           className="font-medium text-red-600 hover:underline"

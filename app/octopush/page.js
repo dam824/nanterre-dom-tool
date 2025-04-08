@@ -57,7 +57,10 @@ const OctopushPage = () => {
         const res = await fetch("/api/octopush/send-message", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ to: phoneNumber, body: message.content }),
+          body: JSON.stringify({
+            to: phoneNumber,
+            messageId: message.id, 
+          }),
         });
 
         const data = await res.json();
