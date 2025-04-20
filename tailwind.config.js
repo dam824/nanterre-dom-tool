@@ -5,6 +5,20 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    {
+      pattern: /text-\[var\(--main-color\)\]/,
+    },
+    {
+      pattern: /bg-\[var\(--main-color\)\]/,
+    },
+    {
+      pattern: /fill-\[var\(--main-color\)\]/,
+    },
+    {
+      pattern: /border-\[var\(--main-color\)\]/,
+    },
+  ],
   theme: {
     extend: {
       backgroundImage: {
