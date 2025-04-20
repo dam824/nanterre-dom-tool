@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+ 
 import Sidebar from '../../components/Sidebar';
-
+import { useTheme } from '../context/ThemeContext';
 
 const predefinedColors = [
   '#f44336d4', // rouge
@@ -15,13 +15,7 @@ const predefinedColors = [
 
 
 const Settings = () => {
-  const [themeColor, setThemeColor] = useState('#f44336d4')
-
- useEffect(() => {
-  document.documentElement.style.setProperty('--main-color', themeColor);
- }, [themeColor])
-
-
+  const { themeColor, setThemeColor } = useTheme();
  return (
   <div className="flex h-screen">
     <Sidebar />
