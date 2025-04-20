@@ -1,10 +1,10 @@
 // app/messages/page.js
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Sidebar from '../../components/Sidebar';
-import MessageForm from '../../components/MessageForm';
-import MessagesTable from '../../components/MessagesTable';
+import { useEffect, useState } from "react";
+import MessageForm from "../../components/MessageForm";
+import MessagesTable from "../../components/MessagesTable";
+import Sidebar from "../../components/Sidebar";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
@@ -13,12 +13,12 @@ const Messages = () => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await fetch('/api/messages/get-all-message', {
-        cache: 'no-store',
-        next: { 
-          tags: ['messages'],
-          revalidate: 0
-        }
+      const res = await fetch("/api/messages/get-all-message", {
+        cache: "no-store",
+        next: {
+          tags: ["messages"],
+          revalidate: 0,
+        },
       });
       const data = await res.json();
       setMessages(data);
@@ -27,28 +27,27 @@ const Messages = () => {
   }, []);
 
   const handleAddMessage = async (message) => {
-    const res = await fetch('/api/messages/create-message', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/messages/create-message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(message),
-      cache: 'no-store'
+      cache: "no-store",
     });
     if (res.ok) {
       const newMessage = await res.json();
       setMessages([...messages, newMessage]);
       setShowForm(false);
 
-         // Re-fetch après création
-    const refreshRes = await fetch('/api/messages/get-all-message', {
-      cache: 'no-store',
-      next: { 
-        tags: ['messages'],
-        revalidate: 0
-      }
-    });
-    const refreshedData = await refreshRes.json();
-    setMessages(refreshedData);
-
+      // Re-fetch après création
+      const refreshRes = await fetch("/api/messages/get-all-message", {
+        cache: "no-store",
+        next: {
+          tags: ["messages"],
+          revalidate: 0,
+        },
+      });
+      const refreshedData = await refreshRes.json();
+      setMessages(refreshedData);
     }
   };
 
@@ -58,36 +57,39 @@ const Messages = () => {
   };
 
   const handleUpdateMessage = async (message) => {
-    const res = await fetch('/api/messages/update-message', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/messages/update-message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...currentMessage, ...message }),
-      cache: 'no-store'
+      cache: "no-store",
     });
     if (res.ok) {
       const updatedMessage = await res.json();
-      setMessages(messages.map((msg) => (msg.id === updatedMessage.id ? updatedMessage : msg)));
+      setMessages(
+        messages.map((msg) =>
+          msg.id === updatedMessage.id ? updatedMessage : msg
+        )
+      );
       setShowForm(false);
       setCurrentMessage(null);
 
       // Re-fetch après mise à jour
-    const refreshRes = await fetch('/api/messages/get-all-message', {
-      cache: 'no-store',
-      next: { 
-        tags: ['messages'],
-        revalidate: 0
-      }
-    });
-    const refreshedData = await refreshRes.json();
-    setMessages(refreshedData);
-    
+      const refreshRes = await fetch("/api/messages/get-all-message", {
+        cache: "no-store",
+        next: {
+          tags: ["messages"],
+          revalidate: 0,
+        },
+      });
+      const refreshedData = await refreshRes.json();
+      setMessages(refreshedData);
     }
   };
 
   const handleDeleteMessage = async (id) => {
-    const res = await fetch('/api/messages/delete-message', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/messages/delete-message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
     if (res.ok) {
@@ -111,8 +113,11 @@ const Messages = () => {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold text-black">Message Templates</h2>
             <button
-              onClick={() => { setShowForm(true); setCurrentMessage(null); }}
-              className="px-4 py-2 bg-[#f44336d4] text-white rounded"
+              onClick={() => {
+                setShowForm(true);
+                setCurrentMessage(null);
+              }}
+              className="px-4 py-2 bg-[var(--main-color)] text-white rounded"
             >
               Add Message Template
             </button>
@@ -125,12 +130,17 @@ const Messages = () => {
                 onDelete={handleDeleteMessage}
               />
             ) : (
-              <div className="text-center text-gray-500">No messages found.</div>
+              <div className="text-center text-gray-500">
+                No messages found.
+              </div>
             )}
           </div>
           {showForm && (
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4 bg-white">
-              <MessageForm onSubmit={handleSubmit} initialData={currentMessage} />
+              <MessageForm
+                onSubmit={handleSubmit}
+                initialData={currentMessage}
+              />
             </div>
           )}
         </div>

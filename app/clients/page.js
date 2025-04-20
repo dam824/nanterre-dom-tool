@@ -1,9 +1,9 @@
 "use client";
 
-import Sidebar from "../../components/Sidebar";
-import { FaSortUp, FaSortDown } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { FaSortDown, FaSortUp } from "react-icons/fa";
+import Sidebar from "../../components/Sidebar";
 
 export default function Clients() {
   const [searchQuery, setSearchQuery] = useState(""); //test barre recherche
@@ -14,7 +14,7 @@ export default function Clients() {
     phone: "",
     isActive: true,
   });
-  const [sortOrder, setSortOrder ] = useState('asc');
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const [isEditing, setIsEditing] = useState(false);
   const [editClientId, setEditClientId] = useState(null);
@@ -29,7 +29,9 @@ export default function Clients() {
         },
       });
       const data = await res.json();
-      const sortedClients = data.sort((a, b) => a.society.localeCompare(b.society))
+      const sortedClients = data.sort((a, b) =>
+        a.society.localeCompare(b.society)
+      );
       setClients(sortedClients);
     };
     fetchClients();
@@ -171,15 +173,14 @@ export default function Clients() {
     const newSortOrder = sortOrder === "asc" ? "desc" : "asc";
     setSortOrder(newSortOrder);
 
-    setClients((prevClients) => 
-    [...prevClients].sort((a, b) => 
-    newSortOrder === "asc"
-    ? a.society.localeCompare(b.society)
-    : b.society.localeCompare(a.society)
-  )
-    )
-  }
-
+    setClients((prevClients) =>
+      [...prevClients].sort((a, b) =>
+        newSortOrder === "asc"
+          ? a.society.localeCompare(b.society)
+          : b.society.localeCompare(a.society)
+      )
+    );
+  };
 
   //search query
   const filteredClients = clients.filter((client) =>
@@ -206,7 +207,7 @@ export default function Clients() {
 
             <button
               onClick={handleShowForm}
-              className="mt-2 sm:mt-0 px-4 py-2 bg-[#f44336d4] text-white rounded w-full sm:w-auto"
+              className="mt-2 sm:mt-0 px-4 py-2 bg-[var(--main-color)] text-white rounded w-full sm:w-auto"
             >
               {showForm ? "Cancel" : "Add Client"}
             </button>
@@ -260,7 +261,7 @@ export default function Clients() {
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-[#f44336d4] text-white rounded"
+                    className="px-4 py-2 bg-[var(--main-color)] text-white rounded"
                   >
                     {isEditing ? "Update Client" : "Add Client"}
                   </button>
@@ -271,19 +272,19 @@ export default function Clients() {
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
               <thead className="text-xs text-gray-900 uppercase bg-gray-100 dark:bg-gray-200">
-                <tr className="bg-[#f44336d4]">
+                <tr className="bg-[var(--main-color)]">
                   <th
                     scope="col"
                     className="px-6 py-3 text-white text-center sm:text-left cursor-pointer"
                     onClick={handleSort}
                   >
                     <span className="inline-flex items-center">
-                    Nom du client 
-                    {sortOrder === "asc" ? (
-                      <FaSortUp className="ml-2 text-white" />
-                    ) : (
-                      <FaSortDown className="ml-2 text-white" />
-                    )}
+                      Nom du client
+                      {sortOrder === "asc" ? (
+                        <FaSortUp className="ml-2 text-white" />
+                      ) : (
+                        <FaSortDown className="ml-2 text-white" />
+                      )}
                     </span>
                   </th>
                   <th
@@ -332,17 +333,15 @@ export default function Clients() {
                         >
                           Modifier
                         </button>
-                        <Link 
-                        href={`/historique/${client.id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mr-5 font-medium text-blue-700 hover:underline"
+                        <Link
+                          href={`/historique/${client.id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mr-5 font-medium text-blue-700 hover:underline"
                         >
-                       
                           Historique
-                         
                         </Link>
-                      
+
                         <button
                           onClick={() => handleDeleteClient(client.id)}
                           className="font-medium text-red-600 hover:underline"

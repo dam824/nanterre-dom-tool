@@ -107,10 +107,10 @@ const Sidebar = () => {
               <Link href="/dashboard" legacyBehavior>
                 <a className="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-800 dark:hover:bg-gray-200 group">
                   <svg
-                    className="w-5 h-5 text-[#F44336] transition duration-75 group-hover:text-[#f71615] dark:text-[#F44336] dark:group-hover:text-[#f71615]"
+                    className="w-5 h-5 text-[var(--main-color)] transition duration-75 group-hover:text-[var(--main-color)] group-hover:opacity-60"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="#F44336"
+                    fill="currentColor"
                     viewBox="0 0 22 21"
                   >
                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -124,10 +124,10 @@ const Sidebar = () => {
               <Link href="/mon-compte" legacyBehavior>
                 <a className="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-800 dark:hover:bg-gray-200 group">
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-[#F44336] transition duration-75 dark:text-[#F44336] group-hover:text-[#f71615] dark:group-hover:text-[#f71615]"
+                    className="flex-shrink-0 w-5 h-5 text-[var(--main-color)] transition duration-75 group-hover:text-[var(--main-color)] group-hover:opacity-60"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="#F44336"
+                    fill="currentColor"
                     viewBox="0 0 18 18"
                   >
                     <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
@@ -142,10 +142,10 @@ const Sidebar = () => {
               <Link href="/octopush" legacyBehavior>
                 <a className="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-800 dark:hover:bg-gray-200 group">
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-[#F44336] transition duration-75 dark:text-[#F44336] group-hover:text-[#f71615] dark:group-hover:text-[#f71615]"
+                    className="flex-shrink-0 w-5 h-5 text-[var(--main-color)] transition duration-75 group-hover:text-[var(--main-color)] group-hover:opacity-60"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="#F44336"
+                    fill="currentColor"
                     viewBox="0 0 20 20"
                   >
                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
@@ -160,12 +160,12 @@ const Sidebar = () => {
               <Link href="/messages" legacyBehavior>
                 <a className="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-800 dark:hover:bg-gray-200 group">
                   <svg
-                    className="w-6 h-6 text-[#F44336] dark:text-[#F44336] group-hover:text-[#f71615] dark:group-hover:text-[#f71615]"
+                    className="w-6 h-6 text-[var(--main-color)] dark:text-[var(--main-color)] group-hover:text-[var(--main-color)] group-hover:opacity-60"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
-                    fill="#F44336"
+                    fill="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -189,10 +189,10 @@ const Sidebar = () => {
               <Link href="/clients" legacyBehavior>
                 <a className="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-800 dark:hover:bg-gray-200 group">
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-[#F44336] transition duration-75 dark:text-[#F44336] group-hover:text-[#f71615] dark:group-hover:text-[#f71615]"
+                    className="flex-shrink-0 w-5 h-5 text-[var(--main-color)] transition duration-75 group-hover:text-[var(--main-color)] group-hover:opacity-60"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="#F44336"
+                    fill="currentColor"
                     viewBox="0 0 20 18"
                   >
                     <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
@@ -205,7 +205,7 @@ const Sidebar = () => {
               <Link href="/historique" legacyBehavior>
                 <a className="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-800 dark:hover:bg-gray-200 group">
                 <svg
-                      className="flex-shrink-0 w-5 h-5 text-[#F44336] transition duration-75 dark:text-[#F44336] group-hover:text-[#f71615] dark:group-hover:text-[#f71615]"
+                      className="flex-shrink-0 w-5 h-5 text-[var(--main-color)] transition duration-75 group-hover:text-[var(--main-color)] group-hover:opacity-60"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -219,19 +219,36 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
+              <Link href="/settings" legacyBehavior>
+                <a className="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-800 dark:hover:bg-gray-200 group">
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-[var(--main-color)] transition duration-75 group-hover:text-[var(--main-color)] group-hover:opacity-60"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19.43 12.98c.04-.32.07-.66.07-1s-.03-.68-.07-1l2.11-1.65a.5.5 0 0 0 .11-.65l-2-3.46a.5.5 0 0 0-.61-.22l-2.49 1a7.12 7.12 0 0 0-1.73-1l-.38-2.65A.5.5 0 0 0 14 2h-4a.5.5 0 0 0-.5.42l-.38 2.65a7.12 7.12 0 0 0-1.73 1l-2.49-1a.5.5 0 0 0-.61.22l-2 3.46a.5.5 0 0 0 .11.65L4.57 11c-.04.32-.07.66-.07 1s.03.68.07 1l-2.11 1.65a.5.5 0 0 0-.11.65l2 3.46a.5.5 0 0 0 .61.22l2.49-1a7.12 7.12 0 0 0 1.73 1l.38 2.65A.5.5 0 0 0 10 22h4a.5.5 0 0 0 .5-.42l.38-2.65a7.12 7.12 0 0 0 1.73-1l2.49 1a.5.5 0 0 0 .61-.22l2-3.46a.5.5 0 0 0-.11-.65ZM12 15a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z"/>
+                </svg>
+
+
+                  <span className="flex-1 ms-3 whitespace-nowrap">Paramètres</span>
+                </a>
+              </Link>
+            </li>
+            <li>
               <button
                 onClick={handleLogout}
                 className="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-800 dark:hover:bg-gray-200 group"
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-[#F44336] transition duration-75 dark:text-[#F44336] group-hover:text-[#f71615] dark:group-hover:text-[#f71615]"
+                  className="flex-shrink-0 w-5 h-5 text-[var(--main-color)] transition duration-75 group-hover:text-[var(--main-color)] group-hover:opacity-60"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 18 16"
                 >
                   <path
-                    stroke="#F44336"
+                    stroke="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
