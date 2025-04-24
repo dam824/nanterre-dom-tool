@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import {v4 as uuidv4 } from 'uuid';
 import { prisma } from '../../../../lib/prisma';
 import { verifyJwt } from '../../../../lib/verifyJwt';
+import { revalidateTag } from 'next/cache';
 
 export async function POST(req: NextRequest) {
     try{
@@ -41,7 +42,18 @@ export async function POST(req: NextRequest) {
         data: {avatarUrl: `/uploads/avatars/${filename}`},
       })
 
-      return NextResponse.json({message:'Avatar uploadé', filename});
+      revalidateTag('avatar-upload');
+
+      return NextResponse.json(
+        { message: 'Avatar uploadé', filename },
+        {
+          headers: {
+            'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+          },
+        }
+      );
 
     }catch(err){
         console.error(err);
