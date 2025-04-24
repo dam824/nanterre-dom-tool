@@ -9,10 +9,20 @@ const Sidebar = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
+  const [user, setUser ] = useState(null);
   
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  useEffect(()=>{
+    const fetchUser = async () => {
+      const res = await fetch("/api/user");
+      const data = await res.json();
+      setUser(data);
+    };
+    fetchUser();
+  }, [])
 
   const handleLogout = async () => {
     if (!isMounted) return;
@@ -77,17 +87,19 @@ const Sidebar = () => {
                     className="flex text-sm bg-gray-200 rounded-full focus:ring-4 focus:ring-gray-300"
                   >
                     <span className="sr-only">Open user menu</span>
+                   {user && (
                     <Image
-                      className="w-8 h-8 rounded-full"
-                      src="/profil-pic.jpg"
-                      alt="Profile"
-                      width={50}
-                      height={50}
-                      layout="fixed"
-                    />
+                    className="w-8 h-8 rounded-full transition-opacity duration-300"
+                    src={user.avatarUrl ? user.avatarUrl : "/profil-pic.jpg"}
+      
+                  alt="Profile picture"
+                  width={50}
+                  height={50}
+                  />
+                   )}
                   </button>
                 </div>
-               é
+               
               </div>
             </div>
           </div>
