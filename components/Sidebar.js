@@ -82,22 +82,16 @@ const Sidebar = () => {
             <div className="flex items-center">
               <div className="flex items-center ms-3">
                 <div>
-                  <button
-                    onClick={toggleUserMenu}
-                    className="flex text-sm bg-gray-200 rounded-full focus:ring-4 focus:ring-gray-300"
-                  >
-                    <span className="sr-only">Open user menu</span>
-                   {user && (
+                  
                     <Image
-                    className="w-8 h-8 rounded-full transition-opacity duration-300"
+                    className="rounded-full transition-opacity duration-300"
                     src={user.avatarUrl ? user.avatarUrl : "/profil-pic.jpg"}
       
                   alt="Profile picture"
-                  width={50}
+                  width={40}
                   height={50}
                   />
-                   )}
-                  </button>
+                 
                 </div>
                
               </div>
