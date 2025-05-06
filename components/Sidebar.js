@@ -82,18 +82,16 @@ const Sidebar = () => {
             <div className="flex items-center">
               <div className="flex items-center ms-3">
                 <div>
-                  
+                {user && (
                     <Image
-                    className="rounded-full transition-opacity duration-300"
-                    src={user.avatarUrl ? user.avatarUrl : "/profil-pic.jpg"}
-      
-                  alt="Profile picture"
-                  width={40}
-                  height={50}
-                  />
-                 
+                      className="transition-opacity duration-300 rounded-full"
+                      src={user.avatarUrl || "/profil-pic.jpg"}
+                      alt="Profile picture"
+                      width={40}
+                      height={50}
+                    />
+                  )}
                 </div>
-               
               </div>
             </div>
           </div>
@@ -107,7 +105,7 @@ const Sidebar = () => {
         } bg-white border-r border-gray-300 sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full  px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-100">
+        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-100">
           <ul className="space-y-2 font-medium ">
             <li className="pt-20">
               <Link href="/dashboard" legacyBehavior>
