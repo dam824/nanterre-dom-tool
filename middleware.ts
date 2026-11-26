@@ -31,5 +31,24 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/dashboard/:path*', '/mon-compte/:path*', '/clients/:path*', '/twilio/:path*', '/messages/:path*','/api/messages/:path*'],
+    matcher: [
+        // pages
+        '/dashboard/:path*',
+        '/mon-compte/:path*',
+        '/clients/:path*',
+        '/twilio/:path*',
+        '/messages/:path*',
+        '/historique/:path*',
+        '/octopush/:path*',
+        '/settings/:path*',
+        '/register/:path*',
+        // API
+        '/api/messages/:path*',
+        '/api/clients/:path*',
+        '/api/octopush/:path*',
+        '/api/user/:path*',
+        '/api/register/:path*',
+        // NE JAMAIS protéger /login, /api/login ni /api/logout :
+        // ce sont les seuls points d'entrée d'un utilisateur non encore authentifié.
+    ],
 };
