@@ -45,3 +45,8 @@ clients_standardized.json
 # logs
 log-local.txt
 log-vercel.txt
+.env*
+
+# tests
+/test-results
+/playwright-report
